@@ -197,9 +197,7 @@ section[data-testid="stSidebar"] {
 # ============================================================
 
 st.markdown("""
-Your personal fitness dashboard for understanding BMI,
-estimating daily energy needs, building balanced macros,
-and discovering simple healthy food and meal ideas.
+hi
 """)
 
 # ============================================================
