@@ -1,8 +1,5 @@
 import streamlit as st
 
-# ============================================================
-# PAGE CONFIG
-# ============================================================
 st.set_page_config(
     page_title="FitBalance",
     page_icon="🏋️",
@@ -11,8 +8,9 @@ st.set_page_config(
 )
 
 # ============================================================
-# CUSTOM CSS
+# STYLE
 # ============================================================
+
 st.markdown("""
 <style>
 
@@ -20,129 +18,174 @@ st.markdown("""
 
 .stApp {
     background:
-        radial-gradient(circle at 10% 10%, rgba(34,197,94,0.15), transparent 30%),
-        radial-gradient(circle at 90% 10%, rgba(59,130,246,0.15), transparent 30%),
-        linear-gradient(135deg, #07111f 0%, #0b1728 50%, #071a16 100%);
-    color: #f8fafc;
-    font-family: 'Inter', sans-serif;
+        radial-gradient(circle at 10% 10%, rgba(34,197,94,.15), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(59,130,246,.15), transparent 30%),
+        linear-gradient(135deg,#07111f 0%,#0b1728 50%,#071a16 100%);
+    color:#f8fafc;
+    font-family:'Inter',sans-serif;
 }
 
 .block-container {
-    max-width: 1250px;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    max-width:1250px;
+    padding-top:2rem;
+    padding-bottom:3rem;
 }
 
-/* Hero */
 .hero {
-    padding: 42px;
-    border-radius: 28px;
-    margin-bottom: 30px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(16,185,129,0.25),
-            rgba(37,99,235,0.20)
-        );
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.30);
+    padding:42px;
+    border-radius:28px;
+    margin-bottom:30px;
+    background:linear-gradient(
+        135deg,
+        rgba(16,185,129,.25),
+        rgba(37,99,235,.20)
+    );
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 20px 60px rgba(0,0,0,.30);
 }
 
 .hero h1 {
-    font-size: 48px !important;
-    font-weight: 800 !important;
-    margin-bottom: 8px;
+    font-size:48px !important;
+    font-weight:800 !important;
+    margin-bottom:8px;
 }
 
 .hero p {
-    font-size: 17px;
-    color: #cbd5e1;
-    max-width: 800px;
+    font-size:17px;
+    color:#cbd5e1;
+    max-width:850px;
 }
 
-/* Cards */
 .card {
-    background: rgba(255,255,255,0.065);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 22px;
-    padding: 22px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.20);
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,.20);
 }
 
 .metric-title {
-    color: #94a3b8;
-    font-size: 14px;
-    margin-bottom: 8px;
+    color:#94a3b8;
+    font-size:14px;
+    margin-bottom:8px;
 }
 
 .metric-value {
-    font-size: 30px;
-    font-weight: 800;
-    color: white;
+    font-size:30px;
+    font-weight:800;
+    color:white;
 }
 
 .metric-small {
-    color: #94a3b8;
-    font-size: 13px;
-    margin-top: 4px;
+    color:#94a3b8;
+    font-size:13px;
+    margin-top:4px;
 }
 
-/* Section titles */
 .section-title {
-    font-size: 26px;
-    font-weight: 800;
-    margin-top: 32px;
-    margin-bottom: 18px;
+    font-size:27px;
+    font-weight:800;
+    margin-top:35px;
+    margin-bottom:18px;
 }
 
-/* Tips */
 .tip {
-    background: rgba(34,197,94,0.08);
-    border-left: 4px solid #22c55e;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
+    background:rgba(34,197,94,.08);
+    border-left:4px solid #22c55e;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:12px;
 }
 
 .warning {
-    background: rgba(245,158,11,0.10);
-    border-left: 4px solid #f59e0b;
-    border-radius: 12px;
-    padding: 18px;
-    margin: 20px 0;
+    background:rgba(245,158,11,.10);
+    border-left:4px solid #f59e0b;
+    border-radius:12px;
+    padding:18px;
+    margin:20px 0;
 }
 
-/* Food cards */
 .food-card {
-    background: rgba(255,255,255,0.065);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 20px;
-    padding: 12px;
-    height: 100%;
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:20px;
+    padding:12px;
+    height:100%;
+    margin-bottom:15px;
 }
 
 .food-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 15px;
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    border-radius:15px;
 }
 
 .food-card h3 {
-    margin-top: 14px;
-    color: white;
+    margin-top:14px;
+    color:white;
 }
 
-/* Buttons */
+.food-card p {
+    color:#cbd5e1;
+}
+
+.food-list {
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+.meal-card {
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.075),
+        rgba(255,255,255,.035)
+    );
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:24px;
+    overflow:hidden;
+    height:100%;
+    box-shadow:0 15px 40px rgba(0,0,0,.22);
+}
+
+.meal-card img {
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.meal-content {
+    padding:20px;
+}
+
+.meal-title {
+    font-size:23px;
+    font-weight:800;
+    color:white;
+    margin-bottom:8px;
+}
+
+.meal-description {
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+.meal-info {
+    margin-top:15px;
+    padding:12px;
+    background:rgba(255,255,255,.05);
+    border-radius:13px;
+    color:#dbeafe;
+}
+
 .stButton > button {
-    width: 100%;
-    border-radius: 12px;
-    font-weight: 700;
+    width:100%;
+    border-radius:12px;
+    font-weight:700;
 }
 
-/* Sidebar */
 section[data-testid="stSidebar"] {
-    background: rgba(5,15,25,0.95);
+    background:rgba(5,15,25,.95);
 }
 
 </style>
@@ -152,13 +195,15 @@ section[data-testid="stSidebar"] {
 # ============================================================
 # HERO
 # ============================================================
+
 st.markdown("""
 <div class="hero">
     <h1>🏋️ FitBalance</h1>
+
     <p>
         Your personal fitness dashboard for understanding BMI,
-        estimating daily calorie needs, and building a balanced
-        nutrition plan around protein, carbohydrates and healthy fats.
+        estimating daily energy needs, building balanced macros,
+        and discovering simple healthy food and meal ideas.
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -167,6 +212,7 @@ st.markdown("""
 # ============================================================
 # SIDEBAR
 # ============================================================
+
 with st.sidebar:
 
     st.header("📋 Your Details")
@@ -235,12 +281,20 @@ height_m = height / 100
 
 bmi = weight / (height_m ** 2)
 
-
-# Mifflin-St Jeor equation
 if gender == "Male":
-    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
+    bmr = (
+        10 * weight
+        + 6.25 * height
+        - 5 * age
+        + 5
+    )
 else:
-    bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
+    bmr = (
+        10 * weight
+        + 6.25 * height
+        - 5 * age
+        - 161
+    )
 
 
 activity_multiplier = {
@@ -272,13 +326,16 @@ if age >= 18:
         fat * 9
     )
 
-    carbs = max(remaining_calories / 4, 0)
+    carbs = max(
+        remaining_calories / 4,
+        0
+    )
 
 else:
 
-    # Educational estimate only for minors.
     protein = weight * 1.2
-    fat = (tdee * 0.30) / 9
+    fat = (tdee * .30) / 9
+
     carbs = max(
         (tdee - protein * 4 - fat * 9) / 4,
         0
@@ -286,32 +343,27 @@ else:
 
 
 protein = round(protein)
-fat = round(fat)
 carbs = round(carbs)
+fat = round(fat)
 
 
 # ============================================================
-# BMI CATEGORY
+# BMI
 # ============================================================
 
 if age < 18:
-
-    bmi_category = "Teen BMI requires age- and sex-specific growth charts."
+    bmi_category = "Use age-specific growth charts."
 
 elif bmi < 18.5:
-
     bmi_category = "Below adult reference range."
 
 elif bmi < 25:
-
     bmi_category = "Within adult reference range."
 
 elif bmi < 30:
-
     bmi_category = "Above adult reference range."
 
 else:
-
     bmi_category = "Higher adult reference range."
 
 
@@ -356,9 +408,11 @@ with c3:
 with c4:
     st.markdown(f"""
     <div class="card">
-        <div class="metric-title">Gender</div>
-        <div class="metric-value">{gender}</div>
-        <div class="metric-small">{goal}</div>
+        <div class="metric-title">Goal</div>
+        <div class="metric-value" style="font-size:20px;">
+            {goal}
+        </div>
+        <div class="metric-small">{gender}</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -403,20 +457,29 @@ with m3:
 
 
 # ============================================================
-# SAFETY FOR TEENS
+# TEEN SAFETY
 # ============================================================
 
 if age < 18:
 
     st.markdown("""
     <div class="warning">
-        <b>⚠️ Important:</b><br><br>
-        For teenagers, calorie and BMI calculations are only rough educational
-        estimates. Growing bodies have changing nutritional needs, so this app
-        should not be used to restrict calories or create a weight-loss diet.
-        Focus on balanced meals, regular activity, sleep and overall wellbeing.
-        If you are concerned about your weight or nutrition, speak with a parent/
-        guardian and a qualified healthcare professional.
+
+        <b>⚠️ Important</b>
+
+        <br><br>
+
+        For teenagers, calorie and BMI calculations are only rough
+        educational estimates. Growing bodies have changing nutritional
+        needs, so this app should not be used to restrict calories or
+        create a weight-loss diet.
+
+        <br><br>
+
+        Focus on balanced meals, regular activity, sleep and overall
+        wellbeing. If you have concerns about nutrition or growth,
+        speak with a parent/guardian and a qualified healthcare professional.
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -432,24 +495,28 @@ st.markdown(
 
 tips = [
     (
-        "🥗 Eat balanced meals",
-        "Try to include protein, vegetables or fruit, carbohydrates and healthy fats across your meals."
+        "🥗 Build balanced meals",
+        "Combine protein, vegetables or fruit, carbohydrates and healthy fats throughout the day."
     ),
+
     (
-        "💪 Train consistently",
-        "Focus on gradually improving strength, fitness and movement instead of looking for instant results."
+        "💪 Stay active",
+        "Focus on gradually improving strength, fitness and movement instead of chasing quick results."
     ),
+
     (
-        "😴 Prioritize sleep",
-        "Good sleep supports recovery, concentration, mood and physical performance."
+        "😴 Sleep well",
+        "Consistent sleep supports recovery, concentration, mood and physical performance."
     ),
+
     (
         "💧 Stay hydrated",
-        "Water is a simple everyday choice, especially when you're active or the weather is hot."
+        "Water is a simple everyday choice, especially during exercise and hot weather."
     ),
+
     (
-        "📈 Be patient",
-        "Fitness is a long-term process. Small habits repeated consistently are more sustainable than extreme changes."
+        "📈 Think long term",
+        "Small habits repeated consistently are more sustainable than extreme changes."
     ),
 ]
 
@@ -467,52 +534,263 @@ for title, description in tips:
 
 
 # ============================================================
-# FOOD SECTION
+# FOOD SOURCES
 # ============================================================
 
 st.markdown(
-    '<div class="section-title">🍽️ Healthy Food Sources</div>',
+    '<div class="section-title">🥗 Healthy Food Sources</div>',
     unsafe_allow_html=True
 )
 
-foods = [
+food_sources = [
 
-    (
-        "🥩 Protein",
-        "Chicken • Eggs • Fish • Greek Yogurt • Lentils",
-        "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=1000&q=80"
-    ),
+    {
+        "title": "🥩 Protein",
+        "image": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147491336/images/6b57555-118-c5b6-a407-d0edc587d3e_How_Much_Protein_Women_Need_to_Build_Muscle.jpg",
+        "foods": [
+            "Chicken breast",
+            "Eggs",
+            "Fish",
+            "Greek yogurt",
+            "Lentils",
+            "Beans"
+        ]
+    },
 
-    (
-        "🍚 Carbohydrates",
-        "Oats • Rice • Potatoes • Whole Grains • Fruit",
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80"
-    ),
+    {
+        "title": "🍚 Carbohydrates",
+        "image": "https://cdn.salla.sa/vwaxy/TOzIvJkMHc7rmGkzOYQrLWUKmWZyDLG8wArXWMvE.png",
+        "foods": [
+            "Oats",
+            "Rice",
+            "Potatoes",
+            "Whole grains",
+            "Whole-grain bread",
+            "Fruit"
+        ]
+    },
 
-    (
-        "🥑 Healthy Fats",
-        "Avocado • Nuts • Seeds • Olive Oil • Tahini",
-        "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1000&q=80"
-    )
+    {
+        "title": "🥑 Healthy Fats",
+        "image": "https://static.wixstatic.com/media/b8b90e_069601d4669b48528460378624151f1f~mv2.png/v1/fill/w_980%2Ch_980%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b8b90e_069601d4669b48528460378624151f1f~mv2.png",
+        "foods": [
+            "Avocado",
+            "Almonds",
+            "Walnuts",
+            "Seeds",
+            "Olive oil",
+            "Tahini"
+        ]
+    }
 ]
 
 food_cols = st.columns(3)
 
-for col, food in zip(food_cols, foods):
-
-    title, description, image = food
+for col, food in zip(food_cols, food_sources):
 
     with col:
+
+        food_list = "".join(
+            f"<li>{item}</li>"
+            for item in food["foods"]
+        )
 
         st.markdown(
             f"""
             <div class="food-card">
 
-                <img src="{image}">
+                <img src="{food["image"]}">
 
-                <h3>{title}</h3>
+                <h3>{food["title"]}</h3>
 
-                <p>{description}</p>
+                <ul class="food-list">
+                    {food_list}
+                </ul>
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+
+# ============================================================
+# HEALTHY MEALS
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">🍽️ Healthy Meal Ideas</div>',
+    unsafe_allow_html=True
+)
+
+st.write(
+    "Simple meal ideas built around a mix of protein, carbohydrates, "
+    "healthy fats and fruit/vegetables."
+)
+
+
+# ============================================================
+# BREAKFAST
+# ============================================================
+
+breakfast = {
+    "title": "🌅 Healthy Breakfast",
+    "name": "Oatmeal + Eggs + Fruit",
+    "image": "https://media.suvalgyk.lt/suvalgyk_recipes/avizine-kose-su-vaisiais-ir-virtais-kiausiniais-a22d14d2.png",
+    "description": (
+        "A simple breakfast combining oats, eggs and fruit. "
+        "It gives you carbohydrates, protein, fiber and useful micronutrients."
+    ),
+    "ingredients": [
+        "Oats",
+        "2 eggs",
+        "Banana or berries",
+        "Milk or Greek yogurt",
+        "Cinnamon"
+    ],
+    "note": "Balanced combination of protein + carbs + fruit."
+}
+
+
+# ============================================================
+# LUNCH
+# ============================================================
+
+lunch = {
+    "title": "☀️ Healthy Lunch",
+    "name": "Chicken Rice Power Bowl",
+    "image": "https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics_v2/medium/chicken_and_rice_bowl.jpg",
+    "description": (
+        "A colorful bowl with chicken, rice and vegetables. "
+        "You can customize the vegetables and add avocado or olive oil."
+    ),
+    "ingredients": [
+        "Chicken breast",
+        "Rice",
+        "Broccoli",
+        "Carrots",
+        "Tomatoes",
+        "Avocado"
+    ],
+    "note": "Great combination of protein + carbohydrates + vegetables."
+}
+
+
+# ============================================================
+# DINNER
+# ============================================================
+
+dinner = {
+    "title": "🌙 Healthy Dinner",
+    "name": "Salmon + Potatoes + Vegetables",
+    "image": "https://www.fitfoodway.co.uk/media/produse/salmon-file-with-boiled-potatoes-broccoli-and-cherry-tomatoes.jpg",
+    "description": (
+        "A balanced dinner featuring salmon, potatoes and vegetables. "
+        "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
+    ),
+    "ingredients": [
+        "Salmon",
+        "Potatoes",
+        "Broccoli",
+        "Cherry tomatoes",
+        "Lemon",
+        "Herbs"
+    ],
+    "note": "Protein + healthy fats + carbohydrates + vegetables."
+}
+
+
+meals = [breakfast, lunch, dinner]
+
+meal_cols = st.columns(3)
+
+for col, meal in zip(meal_cols, meals):
+
+    ingredients = "".join(
+        f"<li>{item}</li>"
+        for item in meal["ingredients"]
+    )
+
+    with col:
+
+        st.markdown(
+            f"""
+            <div class="meal-card">
+
+                <img src="{meal["image"]}">
+
+                <div class="meal-content">
+
+                    <div class="meal-title">
+                        {meal["title"]}
+                    </div>
+
+                    <h3>
+                        {meal["name"]}
+                    </h3>
+
+                    <p class="meal-description">
+                        {meal["description"]}
+                    </p>
+
+                    <div class="meal-info">
+
+                        <b>🛒 Ingredients</b>
+
+                        <ul>
+                            {ingredients}
+                        </ul>
+
+                        <b>💡 Why?</b><br>
+
+                        {meal["note"]}
+
+                    </div>
+
+                </div>
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+
+# ============================================================
+# DAILY MEAL STRUCTURE
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">📅 Simple Daily Structure</div>',
+    unsafe_allow_html=True
+)
+
+structure = st.columns(4)
+
+daily = [
+    ("🌅 Breakfast", "Protein + carbs + fruit"),
+    ("☀️ Lunch", "Protein + carbs + vegetables"),
+    ("🍎 Snack", "Fruit + yogurt / nuts"),
+    ("🌙 Dinner", "Protein + vegetables + carbs")
+]
+
+for col, (title, text) in zip(structure, daily):
+
+    with col:
+
+        st.markdown(
+            f"""
+            <div class="card">
+
+                <div class="metric-title">
+                    {title}
+                </div>
+
+                <div style="
+                    color:white;
+                    font-weight:700;
+                    font-size:16px;
+                ">
+                    {text}
+                </div>
 
             </div>
             """,
@@ -527,6 +805,6 @@ for col, food in zip(food_cols, foods):
 st.markdown("---")
 
 st.caption(
-    "FitBalance provides estimates for educational purposes. "
-    "Individual nutritional needs vary, and BMI is only a screening measure."
+    "FitBalance provides educational estimates. Individual nutritional "
+    "needs vary, and BMI is only a screening measure."
 )
