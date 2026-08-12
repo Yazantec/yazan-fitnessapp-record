@@ -547,40 +547,16 @@ food_sources = [
     {
         "title": "🥩 Protein",
         "image": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147491336/images/6b57555-118-c5b6-a407-d0edc587d3e_How_Much_Protein_Women_Need_to_Build_Muscle.jpg",
-        "foods": [
-            "Chicken breast",
-            "Eggs",
-            "Fish",
-            "Greek yogurt",
-            "Lentils",
-            "Beans"
-        ]
     },
 
     {
         "title": "🍚 Carbohydrates",
         "image": "https://cdn.salla.sa/vwaxy/TOzIvJkMHc7rmGkzOYQrLWUKmWZyDLG8wArXWMvE.png",
-        "foods": [
-            "Oats",
-            "Rice",
-            "Potatoes",
-            "Whole grains",
-            "Whole-grain bread",
-            "Fruit"
-        ]
     },
 
     {
         "title": "🥑 Healthy Fats",
         "image": "https://static.wixstatic.com/media/b8b90e_069601d4669b48528460378624151f1f~mv2.png/v1/fill/w_980%2Ch_980%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b8b90e_069601d4669b48528460378624151f1f~mv2.png",
-        "foods": [
-            "Avocado",
-            "Almonds",
-            "Walnuts",
-            "Seeds",
-            "Olive oil",
-            "Tahini"
-        ]
     }
 ]
 
