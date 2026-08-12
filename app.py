@@ -1,9 +1,5 @@
 import streamlit as st
 
-# ============================================================
-# FITBALANCE FINAL IMAGE/LIST FIX — VERSION 2026-08-12
-# ============================================================
-
 st.set_page_config(
     page_title="FitBalance",
     page_icon="🏋️",
@@ -134,6 +130,10 @@ st.markdown("""
     color:#cbd5e1;
 }
 
+.food-list {
+    color:#cbd5e1;
+    line-height:1.8;
+}
 
 .meal-card {
     background:linear-gradient(
@@ -196,20 +196,13 @@ section[data-testid="stSidebar"] {
 # HERO
 # ============================================================
 
-st.markdown("""
-<div class="hero">
-    <h1>🏋️ FitBalance</h1>
-
-    <p>
-        Your personal fitness dashboard for understanding BMI,
-        estimating daily energy needs, building balanced macros,
-        and discovering simple healthy food and meal ideas.
-    </p>
-</div>
-""", unsafe_allow_html=True)
+st.title("🏋️ FitBalance")
+st.write(
+    "Your personal fitness dashboard for understanding BMI, estimating daily energy needs, "
+    "building balanced macros, and discovering simple healthy food and meal ideas."
+)
 
 
-# ============================================================
 # SIDEBAR
 # ============================================================
 
@@ -312,235 +305,56 @@ tdee = bmr * activity_multiplier[activity]
 # MACROS
 # ============================================================
 
-if age >= 18:
-
-    if goal == "Build Muscle":
-        protein = weight * 1.6
-    else:
-        protein = weight * 1.4
-
-    fat = weight * 0.8
-
-    remaining_calories = tdee - (
-        protein * 4 +
-        fat * 9
-    )
-
-    carbs = max(
-        remaining_calories / 4,
-        0
-    )
-
-else:
-
-    protein = weight * 1.2
-    fat = (tdee * .30) / 9
-
-    carbs = max(
-        (tdee - protein * 4 - fat * 9) / 4,
-        0
-    )
-
-
-protein = round(protein)
-carbs = round(carbs)
-fat = round(fat)
-
-
-# ============================================================
-# BMI
-# ============================================================
-
-if age < 18:
-    bmi_category = "Use age-specific growth charts."
-
-elif bmi < 18.5:
-    bmi_category = "Below adult reference range."
-
-elif bmi < 25:
-    bmi_category = "Within adult reference range."
-
-elif bmi < 30:
-    bmi_category = "Above adult reference range."
-
-else:
-    bmi_category = "Higher adult reference range."
-
-
-# ============================================================
-# RESULTS
-# ============================================================
-
-st.markdown(
-    '<div class="section-title">📊 Your Results</div>',
-    unsafe_allow_html=True
-)
-
-c1, c2, c3, c4 = st.columns(4)
-
-with c1:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">BMI</div>
-        <div class="metric-value">{bmi:.1f}</div>
-        <div class="metric-small">{bmi_category}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c2:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">BMR</div>
-        <div class="metric-value">{bmr:.0f}</div>
-        <div class="metric-small">Estimated kcal/day at rest</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c3:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">Daily Energy</div>
-        <div class="metric-value">{tdee:.0f}</div>
-        <div class="metric-small">Estimated kcal/day</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c4:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">Goal</div>
-        <div class="metric-value" style="font-size:20px;">
-            {goal}
-        </div>
-        <div class="metric-small">{gender}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-
-# ============================================================
-# MACROS
-# ============================================================
-
-st.markdown(
-    '<div class="section-title">🥗 Daily Macro Estimate</div>',
-    unsafe_allow_html=True
-)
+st.markdown("## 🥗 Daily Macro Estimate")
 
 m1, m2, m3 = st.columns(3)
-
-with m1:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">🥩 Protein</div>
-        <div class="metric-value">{protein} g</div>
-        <div class="metric-small">{protein * 4} kcal</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with m2:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">🍚 Carbohydrates</div>
-        <div class="metric-value">{carbs} g</div>
-        <div class="metric-small">{carbs * 4} kcal</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with m3:
-    st.markdown(f"""
-    <div class="card">
-        <div class="metric-title">🥑 Healthy Fats</div>
-        <div class="metric-value">{fat} g</div>
-        <div class="metric-small">{fat * 9} kcal</div>
-    </div>
-    """, unsafe_allow_html=True)
+macro_cards = [
+    ("🥩 Protein", f"{protein} g", f"{protein * 4} kcal"),
+    ("🍚 Carbohydrates", f"{carbs} g", f"{carbs * 4} kcal"),
+    ("🥑 Healthy Fats", f"{fat} g", f"{fat * 9} kcal"),
+]
+for col, (title, value, small) in zip((m1, m2, m3), macro_cards):
+    with col:
+        with st.container(border=True):
+            st.caption(title)
+            st.markdown(f"### {value}")
+            st.caption(small)
 
 
-# ============================================================
 # TEEN SAFETY
 # ============================================================
 
 if age < 18:
-
-    st.markdown("""
-    <div class="warning">
-
-        <b>⚠️ Important</b>
-
-        <br><br>
-
-        For teenagers, calorie and BMI calculations are only rough
-        educational estimates. Growing bodies have changing nutritional
-        needs, so this app should not be used to restrict calories or
-        create a weight-loss diet.
-
-        <br><br>
-
-        Focus on balanced meals, regular activity, sleep and overall
-        wellbeing. If you have concerns about nutrition or growth,
-        speak with a parent/guardian and a qualified healthcare professional.
-
-    </div>
-    """, unsafe_allow_html=True)
-
-
-# ============================================================
-# LONG TERM TIPS
-# ============================================================
-
-st.markdown(
-    '<div class="section-title">🌱 Long-Term Improvement</div>',
-    unsafe_allow_html=True
-)
-
-tips = [
-    (
-        "🥗 Build balanced meals",
-        "Combine protein, vegetables or fruit, carbohydrates and healthy fats throughout the day."
-    ),
-
-    (
-        "💪 Stay active",
-        "Focus on gradually improving strength, fitness and movement instead of chasing quick results."
-    ),
-
-    (
-        "😴 Sleep well",
-        "Consistent sleep supports recovery, concentration, mood and physical performance."
-    ),
-
-    (
-        "💧 Stay hydrated",
-        "Water is a simple everyday choice, especially during exercise and hot weather."
-    ),
-
-    (
-        "📈 Think long term",
-        "Small habits repeated consistently are more sustainable than extreme changes."
-    ),
-]
-
-for title, description in tips:
-
-    st.markdown(
-        f"""
-        <div class="tip">
-            <b>{title}</b><br>
-            {description}
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.warning(
+        "For teenagers, calorie and BMI calculations are only rough educational estimates. "
+        "Growing bodies have changing nutritional needs, so this app should not be used to "
+        "restrict calories or create a weight-loss diet. Focus on balanced meals, regular "
+        "activity, sleep and overall wellbeing. If you have concerns about nutrition or "
+        "growth, speak with a parent/guardian and a qualified healthcare professional."
     )
 
 
+# LONG TERM TIPS
 # ============================================================
+
+st.markdown("## 🌱 Long-Term Improvement")
+tips = [
+    ("🥗 Build balanced meals", "Combine protein, vegetables or fruit, carbohydrates and healthy fats throughout the day."),
+    ("💪 Stay active", "Focus on gradually improving strength, fitness and movement instead of chasing quick results."),
+    ("😴 Sleep well", "Consistent sleep supports recovery, concentration, mood and physical performance."),
+    ("💧 Stay hydrated", "Water is a simple everyday choice, especially during exercise and hot weather."),
+    ("📈 Think long term", "Small habits repeated consistently are more sustainable than extreme changes."),
+]
+for title, description in tips:
+    with st.container(border=True):
+        st.markdown(f"**{title}**")
+        st.write(description)
+
+
 # FOOD SOURCES
 # ============================================================
 
-st.markdown(
-    '<div class="section-title">🥗 Healthy Food Sources</div>',
-    unsafe_allow_html=True
-)
+st.markdown("## 🥗 Healthy Food Sources")
 
 food_sources = [
     {
@@ -561,39 +375,26 @@ food_sources = [
 ]
 
 food_cols = st.columns(3)
-
 for col, food in zip(food_cols, food_sources):
     with col:
         with st.container(border=True):
             st.image(food["image"], use_container_width=True)
             st.markdown(f"### {food['title']}")
-
             for item in food["foods"]:
                 st.markdown(f"✓ {item}")
 
 
-# ============================================================
 # HEALTHY MEALS
 # ============================================================
 
-st.markdown(
-    '<div class="section-title">🍽️ Healthy Meal Ideas</div>',
-    unsafe_allow_html=True
-)
-
-st.write(
-    "Simple meal ideas built around a mix of protein, carbohydrates, "
-    "healthy fats and fruit/vegetables."
-)
+st.markdown("## 🍽️ Healthy Meal Ideas")
+st.write("Simple meal ideas built around a mix of protein, carbohydrates, healthy fats and fruit/vegetables.")
 
 breakfast = {
     "title": "🌅 Healthy Breakfast",
     "name": "Oatmeal + Eggs + Fruit",
     "image": "https://media.suvalgyk.lt/suvalgyk_recipes/avizine-kose-su-vaisiais-ir-virtais-kiausiniais-a22d14d2.png",
-    "description": (
-        "A simple breakfast combining oats, eggs and fruit. "
-        "It gives you carbohydrates, protein, fiber and useful micronutrients."
-    ),
+    "description": "A simple breakfast combining oats, eggs and fruit. It gives you carbohydrates, protein, fiber and useful micronutrients.",
     "ingredients": ["Oats", "2 eggs", "Banana or berries", "Milk or Greek yogurt", "Cinnamon"],
     "note": "Balanced combination of protein + carbs + fruit."
 }
@@ -602,10 +403,7 @@ lunch = {
     "title": "☀️ Healthy Lunch",
     "name": "Chicken Rice Power Bowl",
     "image": "https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics_v2/medium/chicken_and_rice_bowl.jpg",
-    "description": (
-        "A colorful bowl with chicken, rice and vegetables. "
-        "You can customize the vegetables and add avocado or olive oil."
-    ),
+    "description": "A colorful bowl with chicken, rice and vegetables. You can customize the vegetables and add avocado or olive oil.",
     "ingredients": ["Chicken breast", "Rice", "Broccoli", "Carrots", "Tomatoes", "Avocado"],
     "note": "Great combination of protein + carbohydrates + vegetables."
 }
@@ -614,17 +412,13 @@ dinner = {
     "title": "🌙 Healthy Dinner",
     "name": "Salmon + Potatoes + Vegetables",
     "image": "https://www.fitfoodway.co.uk/media/produse/salmon-file-with-boiled-potatoes-broccoli-and-cherry-tomatoes.jpg",
-    "description": (
-        "A balanced dinner featuring salmon, potatoes and vegetables. "
-        "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
-    ),
+    "description": "A balanced dinner featuring salmon, potatoes and vegetables. Salmon provides protein and healthy fats while potatoes provide carbohydrates.",
     "ingredients": ["Salmon", "Potatoes", "Broccoli", "Cherry tomatoes", "Lemon", "Herbs"],
     "note": "Protein + healthy fats + carbohydrates + vegetables."
 }
 
 meals = [breakfast, lunch, dinner]
 meal_cols = st.columns(3)
-
 for col, meal in zip(meal_cols, meals):
     with col:
         with st.container(border=True):
@@ -632,28 +426,19 @@ for col, meal in zip(meal_cols, meals):
             st.markdown(f"### {meal['title']}")
             st.markdown(f"#### {meal['name']}")
             st.write(meal["description"])
-
             st.markdown("**🛒 Ingredients**")
             for item in meal["ingredients"]:
                 st.markdown(f"✓ {item}")
-
             st.markdown("**💡 Why?**")
             st.write(meal["note"])
 
 
-# ============================================================
 # DAILY MEAL STRUCTURE
-
-
 # ============================================================
 
-st.markdown(
-    '<div class="section-title">📅 Simple Daily Structure</div>',
-    unsafe_allow_html=True
-)
+st.markdown("## 📅 Simple Daily Structure")
 
 structure = st.columns(4)
-
 daily = [
     ("🌅 Breakfast", "Protein + carbs + fruit"),
     ("☀️ Lunch", "Protein + carbs + vegetables"),
@@ -662,32 +447,12 @@ daily = [
 ]
 
 for col, (title, text) in zip(structure, daily):
-
     with col:
-
-        st.markdown(
-            f"""
-            <div class="card">
-
-                <div class="metric-title">
-                    {title}
-                </div>
-
-                <div style="
-                    color:white;
-                    font-weight:700;
-                    font-size:16px;
-                ">
-                    {text}
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        with st.container(border=True):
+            st.markdown(f"### {title}")
+            st.markdown(f"**{text}**")
 
 
-# ============================================================
 # FOOTER
 # ============================================================
 
