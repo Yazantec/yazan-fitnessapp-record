@@ -647,10 +647,7 @@ for col, meal in zip(meal_cols, meals):
 
 # ============================================================
 
-st.markdown(
-    '<div class="section-title">📅 Simple Daily Structure</div>',
-    unsafe_allow_html=True
-)
+st.markdown("## 📅 Simple Daily Structure")
 
 structure = st.columns(4)
 
@@ -658,33 +655,14 @@ daily = [
     ("🌅 Breakfast", "Protein + carbs + fruit"),
     ("☀️ Lunch", "Protein + carbs + vegetables"),
     ("🍎 Snack", "Fruit + yogurt / nuts"),
-    ("🌙 Dinner", "Protein + vegetables + carbs")
+    ("🌙 Dinner", "Protein + vegetables + carbs"),
 ]
 
-for col, (title, text) in zip(structure, daily):
-
+for col, (title, description) in zip(structure, daily):
     with col:
-
-        st.markdown(
-            f"""
-            <div class="card">
-
-                <div class="metric-title">
-                    {title}
-                </div>
-
-                <div style="
-                    color:white;
-                    font-weight:700;
-                    font-size:16px;
-                ">
-                    {text}
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        with st.container(border=True):
+            st.markdown(f"### {title}")
+            st.write(description)
 
 
 # ============================================================
