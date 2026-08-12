@@ -1,5 +1,8 @@
 import streamlit as st
-import textwrap
+
+# ============================================================
+# FITBALANCE FINAL IMAGE/LIST FIX — VERSION 2026-08-12
+# ============================================================
 
 st.set_page_config(
     page_title="FitBalance",
@@ -12,7 +15,7 @@ st.set_page_config(
 # STYLE
 # ============================================================
 
-st.markdown(textwrap.dedent("""
+st.markdown("""
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -131,10 +134,6 @@ st.markdown(textwrap.dedent("""
     color:#cbd5e1;
 }
 
-.food-list {
-    color:#cbd5e1;
-    line-height:1.8;
-}
 
 .meal-card {
     background:linear-gradient(
@@ -190,14 +189,14 @@ section[data-testid="stSidebar"] {
 }
 
 </style>
-"""), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 
 # ============================================================
 # HERO
 # ============================================================
 
-st.markdown(textwrap.dedent("""
+st.markdown("""
 <div class="hero">
     <h1>🏋️ FitBalance</h1>
 
@@ -207,7 +206,7 @@ st.markdown(textwrap.dedent("""
         and discovering simple healthy food and meal ideas.
     </p>
 </div>
-"""), unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 
 # ============================================================
@@ -380,34 +379,34 @@ st.markdown(
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">BMI</div>
         <div class="metric-value">{bmi:.1f}</div>
         <div class="metric-small">{bmi_category}</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 with c2:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">BMR</div>
         <div class="metric-value">{bmr:.0f}</div>
         <div class="metric-small">Estimated kcal/day at rest</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 with c3:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">Daily Energy</div>
         <div class="metric-value">{tdee:.0f}</div>
         <div class="metric-small">Estimated kcal/day</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 with c4:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">Goal</div>
         <div class="metric-value" style="font-size:20px;">
@@ -415,7 +414,7 @@ with c4:
         </div>
         <div class="metric-small">{gender}</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 
 # ============================================================
@@ -430,31 +429,31 @@ st.markdown(
 m1, m2, m3 = st.columns(3)
 
 with m1:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">🥩 Protein</div>
         <div class="metric-value">{protein} g</div>
         <div class="metric-small">{protein * 4} kcal</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 with m2:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">🍚 Carbohydrates</div>
         <div class="metric-value">{carbs} g</div>
         <div class="metric-small">{carbs * 4} kcal</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 with m3:
-    st.markdown(textwrap.dedent(f"""
+    st.markdown(f"""
     <div class="card">
         <div class="metric-title">🥑 Healthy Fats</div>
         <div class="metric-value">{fat} g</div>
         <div class="metric-small">{fat * 9} kcal</div>
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 
 # ============================================================
@@ -463,7 +462,7 @@ with m3:
 
 if age < 18:
 
-    st.markdown(textwrap.dedent("""
+    st.markdown("""
     <div class="warning">
 
         <b>⚠️ Important</b>
@@ -482,7 +481,7 @@ if age < 18:
         speak with a parent/guardian and a qualified healthcare professional.
 
     </div>
-    """), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 
 # ============================================================
@@ -544,51 +543,26 @@ st.markdown(
 )
 
 food_sources = [
-
     {
         "title": "🥩 Protein",
         "image": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147491336/images/6b57555-118-c5b6-a407-d0edc587d3e_How_Much_Protein_Women_Need_to_Build_Muscle.jpg",
-        "foods": [
-            "Chicken breast",
-            "Eggs",
-            "Fish",
-            "Greek yogurt",
-            "Lentils",
-            "Beans"
-        ]
+        "foods": ["Chicken breast", "Eggs", "Fish", "Greek yogurt", "Lentils", "Beans"]
     },
-
     {
         "title": "🍚 Carbohydrates",
         "image": "https://cdn.salla.sa/vwaxy/TOzIvJkMHc7rmGkzOYQrLWUKmWZyDLG8wArXWMvE.png",
-        "foods": [
-            "Oats",
-            "Rice",
-            "Potatoes",
-            "Whole grains",
-            "Whole-grain bread",
-            "Fruit"
-        ]
+        "foods": ["Oats", "Rice", "Potatoes", "Whole grains", "Whole-grain bread", "Fruit"]
     },
-
     {
         "title": "🥑 Healthy Fats",
         "image": "https://static.wixstatic.com/media/b8b90e_069601d4669b48528460378624151f1f~mv2.png/v1/fill/w_980%2Ch_980%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b8b90e_069601d4669b48528460378624151f1f~mv2.png",
-        "foods": [
-            "Avocado",
-            "Almonds",
-            "Walnuts",
-            "Seeds",
-            "Olive oil",
-            "Tahini"
-        ]
+        "foods": ["Avocado", "Almonds", "Walnuts", "Seeds", "Olive oil", "Tahini"]
     }
 ]
 
 food_cols = st.columns(3)
 
 for col, food in zip(food_cols, food_sources):
-
     with col:
         with st.container(border=True):
             st.image(food["image"], use_container_width=True)
@@ -612,11 +586,6 @@ st.write(
     "healthy fats and fruit/vegetables."
 )
 
-
-# ============================================================
-# BREAKFAST
-# ============================================================
-
 breakfast = {
     "title": "🌅 Healthy Breakfast",
     "name": "Oatmeal + Eggs + Fruit",
@@ -625,20 +594,9 @@ breakfast = {
         "A simple breakfast combining oats, eggs and fruit. "
         "It gives you carbohydrates, protein, fiber and useful micronutrients."
     ),
-    "ingredients": [
-        "Oats",
-        "2 eggs",
-        "Banana or berries",
-        "Milk or Greek yogurt",
-        "Cinnamon"
-    ],
+    "ingredients": ["Oats", "2 eggs", "Banana or berries", "Milk or Greek yogurt", "Cinnamon"],
     "note": "Balanced combination of protein + carbs + fruit."
 }
-
-
-# ============================================================
-# LUNCH
-# ============================================================
 
 lunch = {
     "title": "☀️ Healthy Lunch",
@@ -648,21 +606,9 @@ lunch = {
         "A colorful bowl with chicken, rice and vegetables. "
         "You can customize the vegetables and add avocado or olive oil."
     ),
-    "ingredients": [
-        "Chicken breast",
-        "Rice",
-        "Broccoli",
-        "Carrots",
-        "Tomatoes",
-        "Avocado"
-    ],
+    "ingredients": ["Chicken breast", "Rice", "Broccoli", "Carrots", "Tomatoes", "Avocado"],
     "note": "Great combination of protein + carbohydrates + vegetables."
 }
-
-
-# ============================================================
-# DINNER
-# ============================================================
 
 dinner = {
     "title": "🌙 Healthy Dinner",
@@ -672,24 +618,14 @@ dinner = {
         "A balanced dinner featuring salmon, potatoes and vegetables. "
         "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
     ),
-    "ingredients": [
-        "Salmon",
-        "Potatoes",
-        "Broccoli",
-        "Cherry tomatoes",
-        "Lemon",
-        "Herbs"
-    ],
+    "ingredients": ["Salmon", "Potatoes", "Broccoli", "Cherry tomatoes", "Lemon", "Herbs"],
     "note": "Protein + healthy fats + carbohydrates + vegetables."
 }
 
-
 meals = [breakfast, lunch, dinner]
-
 meal_cols = st.columns(3)
 
 for col, meal in zip(meal_cols, meals):
-
     with col:
         with st.container(border=True):
             st.image(meal["image"], use_container_width=True)
@@ -707,9 +643,14 @@ for col, meal in zip(meal_cols, meals):
 
 # ============================================================
 # DAILY MEAL STRUCTURE
+
+
 # ============================================================
 
-st.markdown("## 📅 Simple Daily Structure")
+st.markdown(
+    '<div class="section-title">📅 Simple Daily Structure</div>',
+    unsafe_allow_html=True
+)
 
 structure = st.columns(4)
 
@@ -721,10 +662,29 @@ daily = [
 ]
 
 for col, (title, text) in zip(structure, daily):
+
     with col:
-        with st.container(border=True):
-            st.markdown(f"### {title}")
-            st.markdown(f"**{text}**")
+
+        st.markdown(
+            f"""
+            <div class="card">
+
+                <div class="metric-title">
+                    {title}
+                </div>
+
+                <div style="
+                    color:white;
+                    font-weight:700;
+                    font-size:16px;
+                ">
+                    {text}
+                </div>
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 # ============================================================
