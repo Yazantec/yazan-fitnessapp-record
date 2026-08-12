@@ -1,5 +1,9 @@
 import streamlit as st
 
+# ============================================================
+# FITBALANCE FINAL IMAGE/LIST FIX — VERSION 2026-08-12
+# ============================================================
+
 st.set_page_config(
     page_title="FitBalance",
     page_icon="🏋️",
@@ -130,10 +134,6 @@ st.markdown("""
     color:#cbd5e1;
 }
 
-.food-list {
-    color:#cbd5e1;
-    line-height:1.8;
-}
 
 .meal-card {
     background:linear-gradient(
@@ -543,81 +543,37 @@ st.markdown(
 )
 
 food_sources = [
-
     {
         "title": "🥩 Protein",
         "image": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147491336/images/6b57555-118-c5b6-a407-d0edc587d3e_How_Much_Protein_Women_Need_to_Build_Muscle.jpg",
-        "foods": [
-            "Chicken breast",
-            "Eggs",
-            "Fish",
-            "Greek yogurt",
-            "Lentils",
-            "Beans"
-        ]
+        "foods": ["Chicken breast", "Eggs", "Fish", "Greek yogurt", "Lentils", "Beans"]
     },
-
     {
         "title": "🍚 Carbohydrates",
         "image": "https://cdn.salla.sa/vwaxy/TOzIvJkMHc7rmGkzOYQrLWUKmWZyDLG8wArXWMvE.png",
-        "foods": [
-            "Oats",
-            "Rice",
-            "Potatoes",
-            "Whole grains",
-            "Whole-grain bread",
-            "Fruit"
-        ]
+        "foods": ["Oats", "Rice", "Potatoes", "Whole grains", "Whole-grain bread", "Fruit"]
     },
-
     {
         "title": "🥑 Healthy Fats",
         "image": "https://static.wixstatic.com/media/b8b90e_069601d4669b48528460378624151f1f~mv2.png/v1/fill/w_980%2Ch_980%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b8b90e_069601d4669b48528460378624151f1f~mv2.png",
-        "foods": [
-            "Avocado",
-            "Almonds",
-            "Walnuts",
-            "Seeds",
-            "Olive oil",
-            "Tahini"
-        ]
+        "foods": ["Avocado", "Almonds", "Walnuts", "Seeds", "Olive oil", "Tahini"]
     }
 ]
 
 food_cols = st.columns(3)
 
 for col, food in zip(food_cols, food_sources):
-
     with col:
-        # Use Streamlit's native image component instead of relying on
-        # raw HTML <img> tags for remote images.
-        st.image(
-            food["image"],
-            use_container_width=True
-        )
+        with st.container(border=True):
+            st.image(food["image"], use_container_width=True)
+            st.markdown(f"### {food['title']}")
 
-        food_list = "".join(
-            f"<li>{item}</li>"
-            for item in food["foods"]
-        )
-
-        st.markdown(
-            f"""
-            <div class="food-card">
-                <h3>{food["title"]}</h3>
-
-                <ul class="food-list">
-                    {food_list}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+            for item in food["foods"]:
+                st.markdown(f"✓ {item}")
 
 
 # ============================================================
 # HEALTHY MEALS
-
 # ============================================================
 
 st.markdown(
@@ -630,11 +586,6 @@ st.write(
     "healthy fats and fruit/vegetables."
 )
 
-
-# ============================================================
-# BREAKFAST
-# ============================================================
-
 breakfast = {
     "title": "🌅 Healthy Breakfast",
     "name": "Oatmeal + Eggs + Fruit",
@@ -643,20 +594,9 @@ breakfast = {
         "A simple breakfast combining oats, eggs and fruit. "
         "It gives you carbohydrates, protein, fiber and useful micronutrients."
     ),
-    "ingredients": [
-        "Oats",
-        "2 eggs",
-        "Banana or berries",
-        "Milk or Greek yogurt",
-        "Cinnamon"
-    ],
+    "ingredients": ["Oats", "2 eggs", "Banana or berries", "Milk or Greek yogurt", "Cinnamon"],
     "note": "Balanced combination of protein + carbs + fruit."
 }
-
-
-# ============================================================
-# LUNCH
-# ============================================================
 
 lunch = {
     "title": "☀️ Healthy Lunch",
@@ -666,21 +606,9 @@ lunch = {
         "A colorful bowl with chicken, rice and vegetables. "
         "You can customize the vegetables and add avocado or olive oil."
     ),
-    "ingredients": [
-        "Chicken breast",
-        "Rice",
-        "Broccoli",
-        "Carrots",
-        "Tomatoes",
-        "Avocado"
-    ],
+    "ingredients": ["Chicken breast", "Rice", "Broccoli", "Carrots", "Tomatoes", "Avocado"],
     "note": "Great combination of protein + carbohydrates + vegetables."
 }
-
-
-# ============================================================
-# DINNER
-# ============================================================
 
 dinner = {
     "title": "🌙 Healthy Dinner",
@@ -690,71 +618,32 @@ dinner = {
         "A balanced dinner featuring salmon, potatoes and vegetables. "
         "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
     ),
-    "ingredients": [
-        "Salmon",
-        "Potatoes",
-        "Broccoli",
-        "Cherry tomatoes",
-        "Lemon",
-        "Herbs"
-    ],
+    "ingredients": ["Salmon", "Potatoes", "Broccoli", "Cherry tomatoes", "Lemon", "Herbs"],
     "note": "Protein + healthy fats + carbohydrates + vegetables."
 }
 
-
 meals = [breakfast, lunch, dinner]
-
 meal_cols = st.columns(3)
 
 for col, meal in zip(meal_cols, meals):
-
-    ingredients = "".join(
-        f"<li>{item}</li>"
-        for item in meal["ingredients"]
-    )
-
     with col:
-        # Native Streamlit image rendering is more reliable than raw
-        # HTML <img> tags for external image URLs.
-        st.image(
-            meal["image"],
-            use_container_width=True
-        )
+        with st.container(border=True):
+            st.image(meal["image"], use_container_width=True)
+            st.markdown(f"### {meal['title']}")
+            st.markdown(f"#### {meal['name']}")
+            st.write(meal["description"])
 
-        st.markdown(
-            f"""
-            <div class="meal-card">
-                <div class="meal-content">
+            st.markdown("**🛒 Ingredients**")
+            for item in meal["ingredients"]:
+                st.markdown(f"✓ {item}")
 
-                    <div class="meal-title">
-                        {meal["title"]}
-                    </div>
-
-                    <h3>{meal["name"]}</h3>
-
-                    <p class="meal-description">
-                        {meal["description"]}
-                    </p>
-
-                    <div class="meal-info">
-                        <b>🛒 Ingredients</b>
-                        <ul>
-                            {ingredients}
-                        </ul>
-
-                        <b>💡 Why?</b><br>
-                        {meal["note"]}
-                    </div>
-
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+            st.markdown("**💡 Why?**")
+            st.write(meal["note"])
 
 
 # ============================================================
 # DAILY MEAL STRUCTURE
+
 
 # ============================================================
 
