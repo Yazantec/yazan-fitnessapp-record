@@ -197,8 +197,17 @@ section[data-testid="stSidebar"] {
 # ============================================================
 
 st.markdown("""
-hi
-""")
+<div class="hero">
+    <h1>🏋️ FitBalance</h1>
+
+    <p>
+        Your personal fitness dashboard for understanding BMI,
+        estimating daily energy needs, building balanced macros,
+        and discovering simple healthy food and meal ideas.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
 
 # ============================================================
 # SIDEBAR
@@ -604,7 +613,7 @@ lunch = {
 dinner = {
     "title": "🌙 Healthy Dinner",
     "name": "Salmon + Potatoes + Vegetables",
-    "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
+    "image": "https://www.fitfoodway.co.uk/media/produse/salmon-file-with-boiled-potatoes-broccoli-and-cherry-tomatoes.jpg",
     "description": (
         "A balanced dinner featuring salmon, potatoes and vegetables. "
         "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
@@ -638,7 +647,10 @@ for col, meal in zip(meal_cols, meals):
 
 # ============================================================
 
-st.markdown("## 📅 Simple Daily Structure")
+st.markdown(
+    '<div class="section-title">📅 Simple Daily Structure</div>',
+    unsafe_allow_html=True
+)
 
 structure = st.columns(4)
 
@@ -646,14 +658,33 @@ daily = [
     ("🌅 Breakfast", "Protein + carbs + fruit"),
     ("☀️ Lunch", "Protein + carbs + vegetables"),
     ("🍎 Snack", "Fruit + yogurt / nuts"),
-    ("🌙 Dinner", "Protein + vegetables + carbs"),
+    ("🌙 Dinner", "Protein + vegetables + carbs")
 ]
 
-for col, (title, description) in zip(structure, daily):
+for col, (title, text) in zip(structure, daily):
+
     with col:
-        with st.container(border=True):
-            st.markdown(f"### {title}")
-            st.write(description)
+
+        st.markdown(
+            f"""
+            <div class="card">
+
+                <div class="metric-title">
+                    {title}
+                </div>
+
+                <div style="
+                    color:white;
+                    font-weight:700;
+                    font-size:16px;
+                ">
+                    {text}
+                </div>
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 # ============================================================
