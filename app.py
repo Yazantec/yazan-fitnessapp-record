@@ -589,6 +589,12 @@ food_cols = st.columns(3)
 for col, food in zip(food_cols, food_sources):
 
     with col:
+        # Use Streamlit's native image component instead of relying on
+        # raw HTML <img> tags for remote images.
+        st.image(
+            food["image"],
+            use_container_width=True
+        )
 
         food_list = "".join(
             f"<li>{item}</li>"
@@ -598,15 +604,11 @@ for col, food in zip(food_cols, food_sources):
         st.markdown(
             f"""
             <div class="food-card">
-
-                <img src="{food["image"]}">
-
                 <h3>{food["title"]}</h3>
 
                 <ul class="food-list">
                     {food_list}
                 </ul>
-
             </div>
             """,
             unsafe_allow_html=True
@@ -615,6 +617,7 @@ for col, food in zip(food_cols, food_sources):
 
 # ============================================================
 # HEALTHY MEALS
+
 # ============================================================
 
 st.markdown(
@@ -711,43 +714,39 @@ for col, meal in zip(meal_cols, meals):
     )
 
     with col:
+        # Native Streamlit image rendering is more reliable than raw
+        # HTML <img> tags for external image URLs.
+        st.image(
+            meal["image"],
+            use_container_width=True
+        )
 
         st.markdown(
             f"""
             <div class="meal-card">
-
-                <img src="{meal["image"]}">
-
                 <div class="meal-content">
 
                     <div class="meal-title">
                         {meal["title"]}
                     </div>
 
-                    <h3>
-                        {meal["name"]}
-                    </h3>
+                    <h3>{meal["name"]}</h3>
 
                     <p class="meal-description">
                         {meal["description"]}
                     </p>
 
                     <div class="meal-info">
-
                         <b>🛒 Ingredients</b>
-
                         <ul>
                             {ingredients}
                         </ul>
 
                         <b>💡 Why?</b><br>
-
                         {meal["note"]}
-
                     </div>
 
                 </div>
-
             </div>
             """,
             unsafe_allow_html=True
@@ -756,6 +755,7 @@ for col, meal in zip(meal_cols, meals):
 
 # ============================================================
 # DAILY MEAL STRUCTURE
+
 # ============================================================
 
 st.markdown(
