@@ -197,17 +197,10 @@ section[data-testid="stSidebar"] {
 # ============================================================
 
 st.markdown("""
-<div class="hero">
-    <h1>🏋️ FitBalance</h1>
-
-    <p>
-        Your personal fitness dashboard for understanding BMI,
-        estimating daily energy needs, building balanced macros,
-        and discovering simple healthy food and meal ideas.
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
+Your personal fitness dashboard for understanding BMI,
+estimating daily energy needs, building balanced macros,
+and discovering simple healthy food and meal ideas.
+""")
 
 # ============================================================
 # SIDEBAR
