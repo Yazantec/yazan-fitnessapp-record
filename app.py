@@ -613,7 +613,7 @@ lunch = {
 dinner = {
     "title": "🌙 Healthy Dinner",
     "name": "Salmon + Potatoes + Vegetables",
-    "image": "https://www.fitfoodway.co.uk/media/produse/salmon-file-with-boiled-potatoes-broccoli-and-cherry-tomatoes.jpg",
+    "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
     "description": (
         "A balanced dinner featuring salmon, potatoes and vegetables. "
         "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
