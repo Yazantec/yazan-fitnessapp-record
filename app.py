@@ -50,15 +50,6 @@ st.markdown("""
     margin-bottom:8px;
 }
 
-.hero .byline {
-    font-size:15px;
-    font-weight:700;
-    color:#5eead4;
-    letter-spacing:.3px;
-    margin-bottom:14px;
-    text-transform:uppercase;
-}
-
 .hero p {
     font-size:17px;
     color:#cbd5e1;
@@ -208,11 +199,11 @@ section[data-testid="stSidebar"] {
 st.markdown("""
 <div class="hero">
     <h1>🏋️ FitBalance</h1>
-    <div class="byline">Coached by Yazan</div>
 
     <p>
-        Coach Yazan's personal fitness dashboard — clear numbers, balanced
-        macros, and real food ideas that fit your goals.
+        Your personal fitness dashboard for understanding BMI,
+        estimating daily energy needs, building balanced macros,
+        and discovering simple healthy food and meal ideas.
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -555,7 +546,7 @@ food_sources = [
 
     {
         "title": "🥩 Protein",
-        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+        "image": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147491336/images/6b57555-118-c5b6-a407-d0edc587d3e_How_Much_Protein_Women_Need_to_Build_Muscle.jpg",
         "foods": [
             "Chicken breast",
             "Eggs",
@@ -568,7 +559,7 @@ food_sources = [
 
     {
         "title": "🍚 Carbohydrates",
-        "image": "https://images.unsplash.com/photo-1516684732162-798a0062be99?w=800&q=80",
+        "image": "https://cdn.salla.sa/vwaxy/TOzIvJkMHc7rmGkzOYQrLWUKmWZyDLG8wArXWMvE.png",
         "foods": [
             "Oats",
             "Rice",
@@ -581,7 +572,7 @@ food_sources = [
 
     {
         "title": "🥑 Healthy Fats",
-        "image": "https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?w=800&q=80",
+        "image": "https://static.wixstatic.com/media/b8b90e_069601d4669b48528460378624151f1f~mv2.png/v1/fill/w_980%2Ch_980%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/b8b90e_069601d4669b48528460378624151f1f~mv2.png",
         "foods": [
             "Avocado",
             "Almonds",
@@ -598,6 +589,12 @@ food_cols = st.columns(3)
 for col, food in zip(food_cols, food_sources):
 
     with col:
+        # Use Streamlit's native image component instead of relying on
+        # raw HTML <img> tags for remote images.
+        st.image(
+            food["image"],
+            use_container_width=True
+        )
 
         food_list = "".join(
             f"<li>{item}</li>"
@@ -607,15 +604,11 @@ for col, food in zip(food_cols, food_sources):
         st.markdown(
             f"""
             <div class="food-card">
-
-                <img src="{food["image"]}">
-
                 <h3>{food["title"]}</h3>
 
                 <ul class="food-list">
                     {food_list}
                 </ul>
-
             </div>
             """,
             unsafe_allow_html=True
@@ -624,6 +617,7 @@ for col, food in zip(food_cols, food_sources):
 
 # ============================================================
 # HEALTHY MEALS
+
 # ============================================================
 
 st.markdown(
@@ -644,7 +638,7 @@ st.write(
 breakfast = {
     "title": "🌅 Healthy Breakfast",
     "name": "Oatmeal + Eggs + Fruit",
-    "image": "https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=800&q=80",
+    "image": "https://media.suvalgyk.lt/suvalgyk_recipes/avizine-kose-su-vaisiais-ir-virtais-kiausiniais-a22d14d2.png",
     "description": (
         "A simple breakfast combining oats, eggs and fruit. "
         "It gives you carbohydrates, protein, fiber and useful micronutrients."
@@ -667,7 +661,7 @@ breakfast = {
 lunch = {
     "title": "☀️ Healthy Lunch",
     "name": "Chicken Rice Power Bowl",
-    "image": "https://images.unsplash.com/photo-1543353071-873f17a7a088?w=800&q=80",
+    "image": "https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics_v2/medium/chicken_and_rice_bowl.jpg",
     "description": (
         "A colorful bowl with chicken, rice and vegetables. "
         "You can customize the vegetables and add avocado or olive oil."
@@ -691,7 +685,7 @@ lunch = {
 dinner = {
     "title": "🌙 Healthy Dinner",
     "name": "Salmon + Potatoes + Vegetables",
-    "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
+    "image": "https://www.fitfoodway.co.uk/media/produse/salmon-file-with-boiled-potatoes-broccoli-and-cherry-tomatoes.jpg",
     "description": (
         "A balanced dinner featuring salmon, potatoes and vegetables. "
         "Salmon provides protein and healthy fats while potatoes provide carbohydrates."
@@ -720,43 +714,39 @@ for col, meal in zip(meal_cols, meals):
     )
 
     with col:
+        # Native Streamlit image rendering is more reliable than raw
+        # HTML <img> tags for external image URLs.
+        st.image(
+            meal["image"],
+            use_container_width=True
+        )
 
         st.markdown(
             f"""
             <div class="meal-card">
-
-                <img src="{meal["image"]}">
-
                 <div class="meal-content">
 
                     <div class="meal-title">
                         {meal["title"]}
                     </div>
 
-                    <h3>
-                        {meal["name"]}
-                    </h3>
+                    <h3>{meal["name"]}</h3>
 
                     <p class="meal-description">
                         {meal["description"]}
                     </p>
 
                     <div class="meal-info">
-
                         <b>🛒 Ingredients</b>
-
                         <ul>
                             {ingredients}
                         </ul>
 
                         <b>💡 Why?</b><br>
-
                         {meal["note"]}
-
                     </div>
 
                 </div>
-
             </div>
             """,
             unsafe_allow_html=True
@@ -765,6 +755,7 @@ for col, meal in zip(meal_cols, meals):
 
 # ============================================================
 # DAILY MEAL STRUCTURE
+
 # ============================================================
 
 st.markdown(
